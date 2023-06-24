@@ -1,0 +1,4 @@
+since I have learned too many programming languages,I may think,Okay,I need to
+take notes about something I cannot remember about python.Maybe I should also take
+notes about c++ or c# or rust etc in the future.There are so many frameworks although their
+features are so similar.
