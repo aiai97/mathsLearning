@@ -2,3 +2,8 @@ since I have learned too many programming languages,I may think,Okay,I need to
 take notes about something I cannot remember about python.Maybe I should also take
 notes about c++ or c# or rust etc in the future.There are so many frameworks although their
 features are so similar.
+我想我这辈子会深爱计算机和金融，因为它能够治愈我年少时被有些垃圾教育的心理创伤。我也非常喜欢程序员，我只是不喜欢
+笨蛋程序员。虽然我现在也是一个笨蛋程序员。但是呢，它能够治愈我高考的创伤，我也想知道这东西有多难学。目前我已经知道的
+是，我可能很多年后会学c++，会学机器人，会学人工智能，会看很多科研论文。我觉得一堆英文编程数学可酷炫了。我这辈子都非常
+记仇，我觉得那些骂我的人类就是社会败类，智商低下，除了高考考得好点，没半毛钱用。我超爱Taylor Swift的Long Live，
+我打算活到老学到老，然后要学一辈子编程。我觉得编程好的话，超级酷炫，虽然我现在有点抑郁，不愿意搭理任何人。
