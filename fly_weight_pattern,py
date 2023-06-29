@@ -1,0 +1,138 @@
+
+# 享元模式在以下情况下可以使用：
+#
+# 当需要创建大量相似对象，并且这些对象之间可以共享一些内部状态或外部状态时。通过共享状态，可以有效地减少内存消耗。
+#
+# 例子： 假设你正在开发一个城市建设模拟游戏，游戏中有大量的建筑物，如房屋、商店和办公楼。这些建筑物可能有相同的属性，例如位置和外观。通过使用享元模式，你可以将这些共享属性抽象出来作为内部状态，并在创建建筑物时共享这些状态，从而节省内存空间。
+#
+# 当对象的大部分状态可以被外部状态取代，并且外部状态可以在运行时动态改变时。通过将外部状态从对象中提取出来，可以减少对象的数量并提高系统的灵活性。
+#
+# 例子： 假设你正在开发一个图形绘制应用程序，用户可以在画布上绘制不同形状的图形，如矩形、圆形和三角形。这些图形具有共同的属性，如颜色和线条样式，以及特定于每个图形的属性，如位置和大小。通过使用享元模式，你可以将共同的属性作为外部状态提取出来，并在绘制每个图形时共享这些属性，而特定于每个图形的属性可以作为内部状态保存。
+#
+# 当需要对对象进行缓存以提高系统性能时。通过共享对象实例，可以避免重复创建相同的对象，从而提高系统的响应速度和效率。
+#
+# 例子： 假设你正在开发一个电子商务网站，网站上展示了大量的商品。每个商品都有唯一的标识符和基本信息，如名称、描述和价格。通过使用享元模式，你可以将这些基本信息作为内部状态，并将商品对象缓存起来。当用户请求查看某个商品时，可以直接从缓存中获取商品对象，而无需每次都重新创建。这样可以提高网站的性能和用户体验。
+#
+# 总之，享元模式适用于需要共享大量相似对象、可以提取共享状态的对象、需要对对象进行缓存以提高性能的情况。它可以减少内存消耗、提高系统灵活性，并提供更好的性能和可扩展性。
+#
+#
+# 当我们需要创建大量的对象，并且这些对象之间有很多共享的特征时，可以考虑使用享元模式。这些共享特征可以被提取出来作为对象的内部状态，而对象的外部状态可以在运行时进行变化。这样一来，我们可以减少对象的数量，节省内存空间，并提高系统的性能和效率。
+#
+# 以下是一些更具体的例子，以帮助理解享元模式的应用场景：
+#
+# 电影票预订系统：
+# 假设你正在开发一个在线电影票预订系统。系统中有大量的电影场次，每个场次都有相同的信息，如电影名称、放映时间和影院地址。这些信息可以作为电影场次对象的内部状态，而用户选择的座位号可以作为外部状态。通过使用享元模式，我们可以共享相同场次的内部状态，避免重复创建场次对象，从而提高系统的效率。
+#
+# 酒店预订系统：
+# 在一个酒店预订系统中，可能存在大量的房间，每个房间都有相同的基本信息，如房间类型、价格和位置。这些信息可以作为房间对象的内部状态，而用户选择的入住日期和退房日期可以作为外部状态。通过使用享元模式，我们可以共享相同类型的房间的内部状态，减少对象的数量，并提高系统的性能和效率。
+#
+# 虚拟机管理器：
+# 在一个虚拟机管理器中，可能需要创建和管理大量的虚拟机实例。虽然每个虚拟机具有独立的运行状态和配置信息，但某些属性可能是共享的，如操作系统类型和版本。这些共享属性可以作为虚拟机对象的内部状态，而每个虚拟机的运行状态和配置信息可以作为外部状态。通过使用享元模式，可以共享相同操作系统类型和版本的内部状态，减少对象的数量，并提高系统的效率。
+#
+# 游戏中的角色对象：
+# 在一个游戏中，可能存在大量的角色对象，每个角色都具有相同的基本属性，如姓名、等级和生命值。这些基本属性可以作为角色对象的内部状态，而每个角色的位置和状态可以作为外部状态。通过使用享元模式，可以共享相同基本属性的角色对象，减少对象的数量，并提高游戏的性能。
+#
+# 以上例子说明了在许多生活中的情景中，存在大量具有相似特征的对象，通过使用享元模式可以减少对象的数量，节省内存空间，并提高系统的性能和效率。
+class Shape:
+    def __init__(self, color, line_style):
+        self.color = color
+        self.line_style = line_style
+
+    def draw(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, color, line_style, position, width, height):
+        super().__init__(color, line_style)
+        self.position = position
+        self.width = width
+        self.height = height
+
+    def draw(self):
+        print(f"Drawing rectangle at {self.position} with width {self.width} and height {self.height}")
+        print(f"Color: {self.color}")
+        print(f"Line Style: {self.line_style}")
+        print("")
+class Circle(Shape):
+    def __init__(self, color, line_style, center, radius):
+        super().__init__(color, line_style)
+        self.center = center
+        self.radius = radius
+
+    def draw(self):
+        print(f"Drawing circle at {self.center} with radius {self.radius}")
+        print(f"Color: {self.color}")
+        print(f"Line Style: {self.line_style}")
+        print("")
+
+class ShapeFactory:
+    # 存储对象的字典作为类属性
+    shapes = {}
+
+    def get_shape(self, shape_type, color, line_style, **kwargs):
+        key = (shape_type, color, line_style)
+        if key not in self.shapes:
+            if shape_type == "rectangle":
+                position = kwargs.get("position", (0, 0))
+                width = kwargs.get("width", 0)
+                height = kwargs.get("height", 0)
+                self.shapes[key] = Rectangle(color, line_style, position, width, height)
+            elif shape_type == "circle":
+                center = kwargs.get("center", (0, 0))
+                radius = kwargs.get("radius", 0)
+                self.shapes[key] = Circle(color, line_style, center, radius)
+        return self.shapes[key]
+
+
+class ProductCatalog:
+    # 存储对象的字典作为类属性
+    products = {}
+
+    def get_product(self, product_id, name, description, price):
+        if product_id not in self.products:
+            self.products[product_id] = Product(product_id, name, description, price)
+        return self.products[product_id]
+
+class Product:
+    def __init__(self, id, name, description, price):
+        self.id = id
+        self.name = name
+        self.description = description
+        self.price = price
+
+    def show_details(self):
+        print(f"Product ID: {self.id}")
+        print(f"Name: {self.name}")
+        print(f"Description: {self.description}")
+        print(f"Price: {self.price}")
+        print("")
+
+
+# 以下为客户端代码
+
+# 创建图形工厂
+shape_factory = ShapeFactory()
+
+# 创建矩形
+# 创建矩形
+rectangle = shape_factory.get_shape("rectangle", "red", "dotted",position=(10, 10), width=100, height=50)
+rectangle.draw()
+
+rectangle1 = shape_factory.get_shape("rectangle", "red", "dotted",position=(101, 10), width=1001, height=50)
+rectangle1.draw()
+
+
+# 创建圆形
+circle = shape_factory.get_shape("circle", "blue", "solid", center=(50, 50), radius=30)
+circle.draw()
+
+# 创建商品目录
+product_catalog = ProductCatalog()
+
+# 获取商品
+product1 = product_catalog.get_product("001", "T-shirt", "A simple cotton t-shirt", 20.0)
+product1.show_details()
+
+product2 = product_catalog.get_product("002", "Jeans", "A pair of denim jeans", 50.0)
+product2.show_details()
+
