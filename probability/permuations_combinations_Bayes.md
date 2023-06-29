@@ -1,4 +1,4 @@
-Everyone knows learning math is so boring. I dont know why I manage to persuade that math is not difficult and interesting.
+Everyone knows learning math is so boring. I dont know how I manage to persuade that math is not difficult and interesting.
 Maybe just because ,emmm,I am an intp which is like a robot character. I think I like programmers.
 I copy their notes and I hate taking notes(I don;t know how they manage to say so many words about math or cs.They must have no requirements to work overtime).
 But anyway,I have learned it and I need to leave some footprints.
