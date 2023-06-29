@@ -1,0 +1,55 @@
+# 假设你正在开发一个音乐播放器应用程序，它可以播放不同格式的音频文件，如MP3、WAV和FLAC。每种音频格式都需要使用不同的解码器进行解码和播放。
+#
+# 使用外观模式，设计一个音乐播放器外观类 MusicPlayerFacade，它能够提供简化的接口来播放不同格式的音频文件。
+#
+# 要求：
+#
+# 创建音频解码器类 MP3Decoder、WAVDecoder 和 FLACDecoder，每个类都实现一个方法 decode(file)，用于解码并播放相应格式的音频文件。
+# 创建外观类 MusicPlayerFacade，它应该具有一个方法 play(file)，该方法接受音频文件路径作为参数，并根据文件的格式选择适当的解码器进行播放。
+# 你的任务是实现上述要求，并提供一个示例代码来展示如何使用 MusicPlayerFacade 类播放音频文件。
+#
+# 请完成上述任务并提供代码。
+
+# 音频解码器类 - MP3解码器
+class MP3Decoder:
+    def decode(self, file):
+        print(f"Playing MP3 file: {file}")
+
+# 音频解码器类 - WAV解码器
+class WAVDecoder:
+    def decode(self, file):
+        print(f"Playing WAV file: {file}")
+
+# 音频解码器类 - FLAC解码器
+class FLACDecoder:
+    def decode(self, file):
+        print(f"Playing FLAC file: {file}")
+
+# 外观类 - 音乐播放器外观
+class MusicPlayerFacade:
+    def __init__(self):
+        self.mp3_decoder = MP3Decoder()
+        self.wav_decoder = WAVDecoder()
+        self.flac_decoder = FLACDecoder()
+
+    def play(self, file):
+        if file.endswith('.mp3'):
+            self.mp3_decoder.decode(file)
+        elif file.endswith('.wav'):
+            self.wav_decoder.decode(file)
+        elif file.endswith('.flac'):
+            self.flac_decoder.decode(file)
+        else:
+            print(f"Unsupported file format: {file}")
+
+# 示例代码
+def execute():
+    player = MusicPlayerFacade()
+
+    player.play("song.mp3")  # 播放MP3文件
+    player.play("music.wav")  # 播放WAV文件
+    player.play("track.flac")  # 播放FLAC文件
+    player.play("audio.mp4")  # 不支持的文件格式
+
+if __name__ == '__main__':
+    execute()
