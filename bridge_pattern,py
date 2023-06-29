@@ -1,0 +1,68 @@
+#桥接模式（Bridge Pattern）是一种结构性设计模式，它通过将抽象部分与实现部分分离，使它们可以独立地变化。这种模式的核心思想是将一个大类或一组类分为抽象和实现两个维度，通过桥接模式将它们解耦并能够独立地变化。
+
+#假设你正在开发一个汽车销售系统。系统中有不同品牌的汽车（例如，奥迪、宝马、奔驰等）和不同类型的汽车（例如，轿车、SUV、跑车等）。你希望能够根据用户的需求动态地组合品牌和类型，而不是在代码中硬编码所有可能的组合。
+
+#在这种情况下，你可以使用桥接模式来实现。首先，你可以将汽车品牌和汽车类型作为两个独立的维度进行抽象。然后，定义一个抽象的汽车类和一个抽象的品牌类，它们之间建立桥接关系。
+# 定义汽车抽象类
+class Car:
+    def __init__(self, brand):
+        self.brand = brand
+
+    def assemble(self):
+        pass
+
+# 定义品牌抽象类
+class Brand:
+    def __init__(self, name):
+        self.name = name
+
+    def produce(self):
+        pass
+
+# 实现具体的汽车类
+class SedanCar(Car):
+    def __init__(self, brand):
+        super().__init__(brand)
+
+    def assemble(self):
+        print(f"Assembling {self.brand.name} sedan car")
+
+class SuvCar(Car):
+    def __init__(self, brand):
+        super().__init__(brand)
+
+    def assemble(self):
+        print(f"Assembling {self.brand.name} SUV car")
+
+# 实现具体的品牌类
+class AudiBrand(Brand):
+    def __init__(self):
+        super().__init__("Audi")
+
+    def produce(self):
+        print("Producing Audi brand")
+
+class BMWBrand(Brand):
+    def __init__(self):
+        super().__init__("BMW")
+
+    def produce(self):
+        print("Producing BMW brand")
+
+# 客户端代码
+def main():
+    audi = AudiBrand()
+    bmw = BMWBrand()
+
+    sedan_car = SedanCar(audi)
+    suv_car = SuvCar(bmw)
+
+    sedan_car.assemble()
+    suv_car.assemble()
+
+    audi.produce()
+    bmw.produce()
+
+if __name__ == '__main__':
+    main()
+
