@@ -64,8 +64,52 @@ RESTful风格的设计原则和准则包括：
 
 总之，配置监听类能够监测配置变化，并在配置发生变化时执行相应的逻辑。这样可以实现动态刷新配置、热加载和实时通知等功能，提升应用程序的灵活性和可配置性。
 
+在Spring框架中，Bean的生命周期可以分为以下几个阶段：
 
+实例化（Instantiation）：在这个阶段，容器根据Bean的定义（通常是通过类或配置）创建Bean的实例。这可以通过构造函数实例化、工厂方法或其他方式完成。
 
+属性赋值（Population）：在这个阶段，容器会将Bean的属性值注入到Bean实例中。这包括通过构造函数参数、属性注入、方法注入等方式进行赋值。
+
+初始化（Initialization）：在这个阶段，容器会调用Bean的初始化回调方法。这可以是通过实现InitializingBean接口的afterPropertiesSet()方法，或通过@PostConstruct注解标记的方法来实现。
+
+使用（In Use）：在这个阶段，Bean实例已经完成初始化，并且可以被应用程序使用。
+
+销毁（Destruction）：在这个阶段，当Bean实例不再需要时，容器会调用Bean的销毁回调方法来进行清理工作。这可以通过实现DisposableBean接口的destroy()方法，或通过@PreDestroy注解标记的方法来实现。
+
+需要注意的是，并非所有的Bean都会经历所有的阶段，具体的生命周期取决于Bean的作用域和配置方式。例如，对于单例作用域的Bean，默认情况下，容器会在应用程序启动时进行实例化、属性赋值、初始化和销毁操作。而对于原型作用域的Bean，则会在每次使用时进行实例化和属性赋值，但不会执行初始化和销毁操作。
+
+Spring框架通过BeanPostProcessor和BeanFactoryPostProcessor等扩展点，允许开发人员在Bean生命周期的不同阶段进行自定义的操作和扩展。这样可以更好地控制Bean的创建和初始化过程，以满足特定的需求。
+
+总结起来，Bean的生命周期包括实例化、属性赋值、初始化、使用和销毁等阶段，通过Spring容器管理和控制。开发人员可以利用生命周期回调方法和扩展点来实现自定义的初始化和销毁逻辑。
+
+@Component
+public class ExampleBean {
+
+    private SomeDependency dependency;
+
+    @Autowired
+    public void setDependency(SomeDependency dependency) {
+        this.dependency = dependency;
+    }
+
+    // ...
+}
+
+总结一下，dependency属性的注入是属性赋值阶段的一部分，而init()方法的执行是初始化阶段的一部分。通过注解的方式，我们可以清晰地区分属性赋值和初始化的过程。
+
+@Autowired 是Spring的注解，提供更丰富的自动装配功能，而 @Resource 是Java EE的注解，提供了一种简单的按照名称进行注入的方式
+
+Java平台的企业版
+Java EE 的核心组件包括：
+
+Servlet：用于处理HTTP请求和响应的组件。
+JSP（JavaServer Pages）：用于构建动态Web页面的技术。
+EJB（Enterprise JavaBeans）：用于构建分布式应用和事务处理的组件模型。
+JPA（Java Persistence API）：用于对象关系映射和持久化的API。
+JMS（Java Message Service）：用于实现消息传递的API。
+JTA（Java Transaction API）：用于事务管理的API。
+JavaMail：用于发送和接收电子邮件的API。
+Java EE Web Services：用于构建和调用Web服务的API等等。
 
 
 
